@@ -5,11 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="style.css">
-    <title>Click the Circle Game</title>
+    <title>QuiClicker</title>
 </head>
 <body>
     <div id="score-container">
-        <p>Score: <span id="score">0</span></p>
+        <div id="timer-container">
+            <p> <span id="timer">3</span>s</p>
+        </div>
+        <div id="score-info">
+            <p> <span id="score">0</span></p>
+        </div>
+        <div id="timer-overlay"></div>
     </div>
     <div id="game-container">
         <div id="circle"></div>
