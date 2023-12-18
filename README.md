@@ -1,4 +1,4 @@
-# Click the Circle Game
+# Quickr-Clickr
 
 This is a simple clicker, time killer game where you need to click on a moving circle within a specified area. The goal is to score as many points as you can before clicking outside the circle.
 
