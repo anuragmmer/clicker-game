@@ -11,7 +11,7 @@ This is a simple clicker, time killer game where you need to click on a moving c
 
 ## Play the Game
 
-Visit [Clicker-Game](https://anuragmmer.github.io/clicker-game/) to play.
+Visit [Clicker-Game](https://anuragmmer.github.io/quickr-clickr/) to play.
 
 ## How to Run Locally
 
