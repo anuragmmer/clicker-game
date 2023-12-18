@@ -17,9 +17,9 @@ body {
     text-align: center;
     background-color: #ff5f00;
     padding: 10px;
-    border-radius: 5px;
+    border-radius: 3px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    width: 80vw; /* Adjusted the width */
+    width: 80vw; 
     max-width: 400px;
     user-select: none;
     font-size: 24px; 
@@ -62,7 +62,7 @@ body {
     position: fixed;
     bottom: 20px;
     font-size: 24px;
-    background-color: #180900;
+    background-color: #ff5f00;
     color: #fff;
     border: none;
     padding: 10px 20px;
