@@ -2,24 +2,48 @@ document.addEventListener("DOMContentLoaded", function () {
     const gameContainer = document.getElementById("game-container");
     const circle = document.getElementById("circle");
     const scoreElement = document.getElementById("score");
+    const timerElement = document.getElementById("timer");
     const restartButton = document.getElementById("restart-btn");
 
     let score = 0;
+    let timer = 3;
+    let timerInterval;
+    let gamePaused = false; 
 
-    circle.addEventListener("click", function () {
+    const startGameConfirmed = window.confirm("Click 'OK' to start the game!");
+
+    if (startGameConfirmed) {
+        startGame();
+    } else {
+        alert("Game canceled. Refresh the page to start again.");
+    }
+
+    function startGame() {
+        circle.addEventListener("click", function () {
+            if (!gamePaused) {
+                moveCircle();
+                updateScore();
+                resetTimer();
+            }
+        });
+
+        gameContainer.addEventListener("click", function (event) {
+            if (!gamePaused && event.target !== circle) {
+                endGame();
+            }
+        });
+
+        timerElement.addEventListener("click", function () {
+            toggleGamePause();
+        });
+
+        restartButton.addEventListener("click", function () {
+            restartGame();
+        });
+
         moveCircle();
-        updateScore();
-    });
-
-    gameContainer.addEventListener("click", function (event) {
-        if (event.target !== circle) {
-            endGame();
-        }
-    });
-
-    restartButton.addEventListener("click", function () {
-        restartGame();
-    });
+        resetTimer();
+    }
 
     function moveCircle() {
         const maxX = gameContainer.clientWidth - circle.clientWidth;
@@ -33,21 +57,81 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     function endGame() {
+        clearInterval(timerInterval);
         alert("Game Over! Your Score: " + score);
         restartGame();
     }
 
     function restartGame() {
-        score = 0-1;
+        score = 0;
         updateScore();
         moveCircle();
+        resetTimer();
+        gamePaused = true;
+        circle.classList.add("game-paused");
     }
 
     function updateScore() {
         score++;
         scoreElement.textContent = score;
+
+        if (score % 5 === 0) {
+            decreaseTime();
+        }
     }
 
-    // Initial placement of the circle
-    moveCircle();
+    function decreaseTime() {
+        if (timer > 0.2) {
+            timer -= 0.2;
+        } else {
+            timer = 0.2;
+        }
+        updateTimerDisplay();
+    }
+
+    function resetTimer() {
+        timer = 3;
+        updateTimerDisplay();
+
+        clearInterval(timerInterval);
+        timerInterval = setInterval(function () {
+            if (!gamePaused) {
+                timer--;
+                updateTimerDisplay();
+
+                if (timer === 0) {
+                    clearInterval(timerInterval);
+                    endGame();
+                }
+            }
+        }, 1000);
+    }
+
+    function updateTimerDisplay() {
+        timerElement.textContent = timer.toFixed(1);
+    }
+
+    function toggleGamePause() {
+        gamePaused = !gamePaused;
+
+        circle.style.pointerEvents = gamePaused ? "none" : "auto";
+
+        if (gamePaused) {
+            circle.classList.add("game-paused");
+        } else {
+            circle.classList.remove("game-paused");
+        }
+        
+        if (gamePaused) {
+            alert("Game Paused");
+        } else {
+            alert("Game Resumed");
+        }
+    }
+
+    timerElement.parentElement.addEventListener("click", function () {
+        if (event.target !== timerElement) {
+            toggleGamePause();
+        }
+    });
 });
