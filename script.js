@@ -63,7 +63,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     function restartGame() {
-        score = 0;
+        score = 0-1;
         updateScore();
         moveCircle();
         resetTimer();
