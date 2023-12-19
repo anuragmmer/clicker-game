@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", function () {
     let timerInterval;
     let gamePaused = false; 
 
-    const startGameConfirmed = window.confirm("Click 'OK' to start the game!");
+    const startGameConfirmed = window.confirm("Click 'OK' to start the game! You can pause the game by clicking the timer.");
 
     if (startGameConfirmed) {
         startGame();
@@ -58,7 +58,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     function endGame() {
         clearInterval(timerInterval);
-        alert("Game Over! Your Score: " + score);
+        alert("Game Over! Your Score: " + score + ". Click the timer to resume a new game.");
         restartGame();
     }
 
@@ -123,9 +123,9 @@ document.addEventListener("DOMContentLoaded", function () {
         }
         
         if (gamePaused) {
-            alert("Game Paused");
+            alert("Game Paused. Resume by clicking the timer.");
         } else {
-            alert("Game Resumed");
+            alert("Game Resumed. Be ready.");
         }
     }
 
