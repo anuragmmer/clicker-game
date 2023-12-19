@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const restartButton = document.getElementById("restart-btn");
 
     let score = 0;
-    let timer = 3;
+    let timer = 1.5;
     let timerInterval;
     let gamePaused = false; 
 
@@ -90,7 +90,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     function resetTimer() {
-        timer = 3;
+        timer = 1.5;
         updateTimerDisplay();
 
         clearInterval(timerInterval);
